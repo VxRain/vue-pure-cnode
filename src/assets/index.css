@@ -1,0 +1,22 @@
+/* 首页通用样式 */
+#main-wrapper {
+  display: flex;
+  min-height: 80vh;
+  margin: 10px 0 10px 0;
+}
+
+@media all and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .main-container {
+    /* margin-left: 0; */
+    margin: 0 2%;
+  }
+  .visit-count {
+    display: none;
+  }
+  .avatar {
+    padding-right: 5px;
+  }
+}

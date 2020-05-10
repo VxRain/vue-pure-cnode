@@ -1,0 +1,83 @@
+/* 抽象出页面主要部分的骨架 */
+
+/* 默认的a链接样式 */
+html {
+  font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+}
+a,
+a:link,
+a:visited {
+  color: #08c;
+  text-decoration: none;
+}
+a:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+
+/* 主区块容器 */
+.main-container {
+  flex: 1 auto;
+  margin-left: 5%;
+}
+
+/* 窗格们 */
+.panes {
+}
+/* 窗格 */
+.pane {
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+/* 窗格头部 */
+.pane-header {
+  padding: 10px;
+  margin: 0;
+  border-radius: 3px;
+  background: #f6f6f6;
+  font-size: 14px;
+  color: #444;
+}
+/* 窗格内容 */
+.pane-content {
+  padding: 5px 10px;
+}
+
+/* 用户窗格 */
+.user-info .avatar {
+  width: 48px;
+  height: 48px;
+  margin: 0 15px 10px 0;
+  vertical-align: middle;
+}
+.user-info .username {
+  color: #778087;
+}
+.user-info .score {
+  font-size: 14;
+  color: #333;
+}
+
+/* 页面侧边栏骨架 */
+.sidebar {
+  flex-basis: 20%;
+  min-width: 150px;
+  margin: 0 5% 0 1%;
+}
+
+/* 列表样式 */
+.nav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.nav li {
+  padding: 10px;
+  font-size: 14px;
+}
+.nav a {
+  color: #778087;
+  text-decoration: none;
+}

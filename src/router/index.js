@@ -1,0 +1,45 @@
+import Vue from "vue";
+import Router from "vue-router";
+import Topics from "@/components/Topics.vue";
+import TopicsSidebar from "@/components/TopicsSidebar.vue";
+import Topic from "@/components/Topic.vue";
+import TopicSidebar from "@/components/TopicSidebar.vue";
+import User from "@/components/User.vue";
+
+Vue.use(Router);
+
+export default new Router({
+  routes: [
+    {
+      path: "/",
+      name: "topics",
+      components: {
+        main: Topics,
+        sidebar: TopicsSidebar,
+      },
+    },
+    {
+      path: "/topic/:topicId&author=:userName",
+      name: "topic",
+      components: {
+        main: Topic,
+        sidebar: TopicSidebar,
+      },
+    },
+    {
+      path: "/user/:userName",
+      name: "user",
+      components: {
+        main: User,
+        sidebar: TopicsSidebar,
+      },
+    },
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
+});
