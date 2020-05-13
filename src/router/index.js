@@ -36,6 +36,7 @@ export default new Router({
     },
   ],
   scrollBehavior(to, from, savedPosition) {
+    // 路由变更后是否保留滚动栏高度
     if (savedPosition) {
       return savedPosition;
     } else {

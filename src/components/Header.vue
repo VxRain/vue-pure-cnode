@@ -37,7 +37,7 @@ export default {
   min-height: 50px;
   justify-content: space-between;
   align-items: center;
-  padding-left: 5%;
+  padding: 0 5%;
   /*  */
   background: #444;
   color: #fff;
@@ -50,12 +50,9 @@ export default {
   height: 28px;
   width: 120px;
 }
-.header .nav {
-  padding-left: 0;
-  padding-right: 5%;
-}
 .header .nav > li {
   display: inline-block;
-  padding: 0px 15px;
+  padding: 0;
+  margin: 0;
 }
 </style>
