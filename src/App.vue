@@ -16,6 +16,8 @@
 <script>
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
+import { getTopics } from "api/api.js";
+
 export default {
   name: "App",
   components: {
@@ -29,24 +31,17 @@ export default {
     };
   },
   methods: {
-    getData(tab) {
-      this.$axios
-        .get("https://cnodejs.org/api/v1/topics", {
-          params: {
-            tab: tab
-          }
-        })
-        .then(res => {
-          this.postList = res.data.data;
-          this.loading = false;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    getTopicsData(tab, page) {
+      getTopics({
+        tab,
+      }).then(topics => {
+        this.postList = topics;
+        this.loading = false;
+      });
     }
   },
-  beforeMount() {
-    this.getData();
+  created() {
+    this.getTopicsData();
   },
   beforeCreate() {
     // 设置HTML背景色

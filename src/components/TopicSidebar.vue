@@ -3,11 +3,18 @@
     <div class="pane">
       <div class="pane-header">作者</div>
       <div class="pane-content user-info">
-        <a href="#">
+        <!-- 
+        这里的authorData是异步获取的，先使用v-if确定获取到数据了，再渲染路由，不然Vue会报警告
+        -->
+        <router-link
+          v-if="authorData"
+          :to="{name: 'user', params: {userName: authorData.loginname}}"
+        >
           <img :src="authorData.avatar_url" alt class="avatar" />
-        </a>
+        </router-link>
         <span class="username">
           <router-link
+            v-if="authorData"
             :to="{name: 'user', params: {userName: authorData.loginname}}"
           >{{authorData.loginname}}</router-link>
         </span>
@@ -19,6 +26,7 @@
       <ul class="pane-content nav">
         <li v-for="post of authorData.recent_topics" :key="post.id">
           <router-link
+            v-if="authorData"
             :to="{name:'topic', params:{topicId: post.id, userName: post.author.loginname}}"
           >{{post.title}}</router-link>
         </li>
@@ -38,6 +46,7 @@
 </template>
 
 <script>
+import { getAuthor } from "api/api.js";
 export default {
   name: "Sidebar",
   data() {
@@ -47,12 +56,9 @@ export default {
   },
   methods: {
     getAuthorData() {
-      this.$axios
-        .get(`https://cnodejs.org/api/v1/user/${this.$route.params.userName}`)
-        .then(response => {
-          this.authorData = response.data.data;
-          this.loading = false;
-        });
+      getAuthor(this.$route.params.userName).then(res => {
+        this.authorData = res;
+      });
     }
   },
   computed: {
@@ -66,7 +72,7 @@ export default {
         .slice(0, limitedCount);
     }
   },
-  beforeMount() {
+  created() {
     this.getAuthorData();
   },
   watch: {

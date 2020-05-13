@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     tabChange(tab, index) {
-      this.$parent.getData(tab);
+      this.$parent.getTopicsData(tab);
       this.activedTab = index;
     }
   }
