@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <div class="pane">
+    <div class="pane" v-if="notIndex">
       <div class="pane-header">作者</div>
       <div class="pane-content user-info">
         <!-- 
@@ -21,7 +21,7 @@
         <div class="score">积分：{{authorData.score}}</div>
       </div>
     </div>
-    <div class="pane">
+    <div class="pane" v-if="notIndex">
       <div class="pane-header">作者其它话题</div>
       <ul class="pane-content nav">
         <li v-for="post of authorData.recent_topics" :key="post.id">
@@ -62,9 +62,14 @@ export default {
     }
   },
   computed: {
+    // 判断是否在首页
+    notIndex() {
+      return this.$route.path !== "/" ? true : false;
+    },
     // 过滤出未回复的帖子
     noReplyPostList() {
-      let limitedCount = 5;
+      // 不在首页就显示5个,否则显示15个
+      let limitedCount = this.notIndex ? 5 : 15;
       return this.$parent.postList
         .filter(post => {
           return post.reply_count === 0;

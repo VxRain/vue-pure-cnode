@@ -1,9 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Topics from "@/components/Topics.vue";
-import TopicsSidebar from "@/components/TopicsSidebar.vue";
 import Topic from "@/components/Topic.vue";
-import TopicSidebar from "@/components/TopicSidebar.vue";
+import Sidebar from "@/components/Sidebar.vue";
 import User from "@/components/User.vue";
 
 Vue.use(Router);
@@ -15,7 +14,7 @@ export default new Router({
       name: "topics",
       components: {
         main: Topics,
-        sidebar: TopicsSidebar,
+        sidebar: Sidebar,
       },
     },
     {
@@ -23,7 +22,7 @@ export default new Router({
       name: "topic",
       components: {
         main: Topic,
-        sidebar: TopicSidebar,
+        sidebar: Sidebar,
       },
     },
     {
@@ -31,7 +30,7 @@ export default new Router({
       name: "user",
       components: {
         main: User,
-        sidebar: TopicsSidebar,
+        sidebar: Sidebar,
       },
     },
   ],
