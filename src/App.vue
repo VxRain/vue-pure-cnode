@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 头部 -->
-    <Header></Header>
+    <Header @sidebarToggle="sidebarToggle"></Header>
     <div id="main-wrapper">
       <!-- 主内容路由，命名视图main -->
       <router-view name="main"></router-view>
@@ -27,17 +27,21 @@ export default {
   data() {
     return {
       postList: [],
-      loading: true
+      loading: true,
+      showSidebar: false
     };
   },
   methods: {
     getTopicsData(tab, page) {
       getTopics({
-        tab,
+        tab
       }).then(topics => {
         this.postList = topics;
         this.loading = false;
       });
+    },
+    sidebarToggle() {
+      this.showSidebar = !this.showSidebar;
     }
   },
   created() {

@@ -1,22 +1,67 @@
 /* 首页通用样式 */
 #main-wrapper {
   display: flex;
-  min-height: 80vh;
+  min-height: 60vh;
   margin: 10px 0 10px 0;
 }
 
+/* 媒体查询文档 */
 @media all and (max-width: 768px) {
-  .sidebar {
-    display: none;
+  .header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    z-index: 9999;
+  }
+  .header .bar {
+    display: inline !important;
   }
   .main-container {
-    /* margin-left: 0; */
-    margin: 0 2%;
+    margin: 50px 10px 0 10px;
+    transition: transform 0.6s;
   }
   .visit-count {
     display: none;
   }
   .avatar {
     padding-right: 5px;
+  }
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    transform: translate3d(100%, 0, 0);
+    margin: 0;
+    z-index: 500;
+  }
+  .sidebar-offscreen {
+    position: fixed;
+    margin: 0;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    width: 75%;
+    padding-left: 5px;
+    background: #e1e1e1;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.6s;
+    z-index: 2000;
+  }
+  .main-offscreen {
+    position: fixed;
+    top: 0;
+    margin: 0;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #f0f3f4;
+    transform: translate3d(-75%, 0, 0);
+    transition: transform 0.6s;
+    z-index: 1000;
   }
 }

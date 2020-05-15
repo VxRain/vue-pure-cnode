@@ -1,6 +1,6 @@
 <template>
   <!-- #内容 -->
-  <div class="main-container">
+  <div class="main-container" :class="{'main-offscreen':isOffscreen}">
     <div class="pane">
       <!-- 话题分类标签 -->
       <div class="pane-header tabs">
@@ -52,6 +52,11 @@ export default {
       ],
       activedTab: 0
     };
+  },
+  computed: {
+    isOffscreen() {
+      return this.$parent.showSidebar ? true : false;
+    }
   },
   methods: {
     tabChange(tab, index) {

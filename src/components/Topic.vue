@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="main-container" :class="{'main-offscreen':isOffscreen}">
     <!-- loading组件 -->
     <loading :condition="loading"></loading>
     <!-- 主题窗格 -->
@@ -58,6 +58,11 @@ export default {
       loading: true,
       topic: ""
     };
+  },
+  computed: {
+    isOffscreen() {
+      return this.$parent.showSidebar ? true : false;
+    }
   },
   methods: {
     getTopicData() {

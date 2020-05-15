@@ -1,14 +1,12 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" :class="{'sidebar-offscreen':isOffscreen}">
     <!-- 
         这里的authorData是异步获取的，先使用v-if确定获取到数据了，再渲染路由，不然Vue会报警告
     -->
     <div class="pane" v-if="notIndex && authorData">
       <div class="pane-header">作者</div>
       <div class="pane-content user-info">
-        <router-link
-          :to="{name: 'user', params: {userName: authorData.loginname}}"
-        >
+        <router-link :to="{name: 'user', params: {userName: authorData.loginname}}">
           <img :src="authorData.avatar_url" alt class="avatar" />
         </router-link>
         <span class="username">
@@ -63,6 +61,10 @@ export default {
     // 判断是否在首页
     notIndex() {
       return this.$route.path !== "/" ? true : false;
+    },
+    // 是否显示手机侧边栏
+    isOffscreen() {
+      return this.$parent.showSidebar ? true : false;
     },
     // 过滤出未回复的帖子
     noReplyPostList() {

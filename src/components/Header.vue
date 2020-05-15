@@ -13,6 +13,7 @@
         <a href="#" style="color:white" @click="setToken">设置Token</a>
       </li>
     </ul>
+    <span class="bar" @click="sidebarToggle">边栏</span>
   </header>
 </template>
 
@@ -26,6 +27,9 @@ export default {
       (如果不拖延的话...
       (手动滑稽
       `);
+    },
+    sidebarToggle() {
+      this.$emit("sidebarToggle");
     }
   }
 };
@@ -54,5 +58,8 @@ export default {
   display: inline-block;
   padding: 0;
   margin: 0;
+}
+.header .bar {
+  display: none;
 }
 </style>
