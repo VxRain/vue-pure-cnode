@@ -1,27 +1,25 @@
 <template>
   <div class="sidebar">
-    <div class="pane" v-if="notIndex">
+    <!-- 
+        这里的authorData是异步获取的，先使用v-if确定获取到数据了，再渲染路由，不然Vue会报警告
+    -->
+    <div class="pane" v-if="notIndex && authorData">
       <div class="pane-header">作者</div>
       <div class="pane-content user-info">
-        <!-- 
-        这里的authorData是异步获取的，先使用v-if确定获取到数据了，再渲染路由，不然Vue会报警告
-        -->
         <router-link
-          v-if="authorData"
           :to="{name: 'user', params: {userName: authorData.loginname}}"
         >
           <img :src="authorData.avatar_url" alt class="avatar" />
         </router-link>
         <span class="username">
           <router-link
-            v-if="authorData"
             :to="{name: 'user', params: {userName: authorData.loginname}}"
           >{{authorData.loginname}}</router-link>
         </span>
         <div class="score">积分：{{authorData.score}}</div>
       </div>
     </div>
-    <div class="pane" v-if="notIndex">
+    <div class="pane" v-if="notIndex && authorData">
       <div class="pane-header">作者其它话题</div>
       <ul class="pane-content nav">
         <li v-for="post of authorData.recent_topics" :key="post.id">
