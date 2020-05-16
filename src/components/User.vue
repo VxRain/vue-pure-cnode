@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container user-zone">
+  <div class="main-container user-zone" :class="{'main-offscreen':isOffscreen}">
     <div class="pane">
       <div class="pane-header">
         <router-link :to="{name: 'topics'}">主页</router-link>
@@ -47,6 +47,11 @@ export default {
       loading: true
     };
   },
+  computed: {
+    isOffscreen() {
+      return this.$parent.showSidebar ? true : false;
+    }
+  },
   methods: {
     getUserInfo() {
       this.$axios
@@ -64,16 +69,8 @@ export default {
 </script>
 
 <style scoped>
-.main-container.user-zone {
-  margin: 0 0 0 5%;
-}
 .divider {
   padding: 0 5px;
   color: #ccc;
-}
-@media all and (max-width: 768px) {
-  .main-container.user-zone {
-    margin: 0 5%;
-  }
 }
 </style>

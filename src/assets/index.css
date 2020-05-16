@@ -1,7 +1,7 @@
 /* 首页通用样式 */
 #main-wrapper {
   display: flex;
-  min-height: 60vh;
+  min-height: 100vh;
   margin: 10px 0 10px 0;
 }
 
@@ -16,7 +16,7 @@
     height: 50px;
     z-index: 9999;
   }
-  .header .bar {
+  .header .toggle-btn {
     display: inline !important;
   }
   .main-container {
@@ -32,6 +32,7 @@
   .sidebar {
     position: fixed;
     top: 60px;
+    right: 0;
     transform: translate3d(100%, 0, 0);
     margin: 0;
     z-index: 500;
@@ -48,6 +49,7 @@
     transform: translate3d(0, 0, 0);
     transition: transform 0.6s;
     z-index: 2000;
+    overflow-y: scroll;
   }
   .main-offscreen {
     position: fixed;
@@ -59,7 +61,7 @@
     left: 0;
     width: 100%;
     overflow: hidden;
-    background-color: #f0f3f4;
+    background-color: #e1e1e1;
     transform: translate3d(-75%, 0, 0);
     transition: transform 0.6s;
     z-index: 1000;

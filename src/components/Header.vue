@@ -13,7 +13,11 @@
         <a href="#" style="color:white" @click="setToken">设置Token</a>
       </li>
     </ul>
-    <span class="bar" @click="sidebarToggle">边栏</span>
+    <button aria-label="切换导航栏" @click="sidebarToggle" class="toggle-btn">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </header>
 </template>
 
@@ -59,7 +63,25 @@ export default {
   padding: 0;
   margin: 0;
 }
-.header .bar {
+.toggle-btn {
   display: none;
+  padding: 10px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+.toggle-btn:focus {
+  border-color: black;
+  outline-color: #333;
+}
+.btn-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+.btn-bar + .btn-bar {
+  margin-top: 4px;
 }
 </style>

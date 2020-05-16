@@ -3,7 +3,9 @@
     <!-- 
         这里的authorData是异步获取的，先使用v-if确定获取到数据了，再渲染路由，不然Vue会报警告
     -->
-    <div class="pane" v-if="notIndex && authorData">
+    <!-- 如果不在首页，并且有作者数据，就渲染出来 -->
+    <!-- 在用户界面，就不渲染作者数据了，内容都差不多… -->
+    <div class="pane" v-if="(!isIndexPage && authorData) && !isUserPage">
       <div class="pane-header">作者</div>
       <div class="pane-content user-info">
         <router-link :to="{name: 'user', params: {userName: authorData.loginname}}">
@@ -17,7 +19,7 @@
         <div class="score">积分：{{authorData.score}}</div>
       </div>
     </div>
-    <div class="pane" v-if="notIndex && authorData">
+    <div class="pane" v-if="(!isIndexPage && authorData) && !isUserPage">
       <div class="pane-header">作者其它话题</div>
       <ul class="pane-content nav">
         <li v-for="post of authorData.recent_topics" :key="post.id">
@@ -59,8 +61,11 @@ export default {
   },
   computed: {
     // 判断是否在首页
-    notIndex() {
-      return this.$route.path !== "/" ? true : false;
+    isIndexPage() {
+      return this.$route.path === "/" ? true : false;
+    },
+    isUserPage() {
+      return this.$route.name === "user" ? true : false;
     },
     // 是否显示手机侧边栏
     isOffscreen() {
@@ -69,7 +74,7 @@ export default {
     // 过滤出未回复的帖子
     noReplyPostList() {
       // 不在首页就显示5个,否则显示15个
-      let limitedCount = this.notIndex ? 5 : 15;
+      let limitedCount = !this.isIndexPage ? 5 : 15;
       return this.$parent.postList
         .filter(post => {
           return post.reply_count === 0;
